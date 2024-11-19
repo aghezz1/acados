@@ -214,8 +214,13 @@ def generate_c_code_discrete_dynamics(context: GenerateContext, model: AcadosMod
     lam = symbol('lam', nx1, 1)
     ux = ca.vertcat(u, x)
 
-    # generate jacobians
-    jac_ux = ca.jacobian(phi, ux)
+    if model.disc_dyn_custom_jac is not None:
+        # use custom jacobians
+        jac_ux = model.disc_dyn_custom_jac
+    else:
+        # generate jacobians
+        jac_ux = ca.jacobian(phi, ux)
+
     # generate adjoint
     adj_ux = ca.jtimes(phi, ux, lam, True)
     # generate hessian

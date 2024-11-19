@@ -100,6 +100,12 @@ class AcadosModel():
         Used if :py:attr:`acados_template.acados_ocp_options.AcadosOcpOptions.integrator_type` == 'DISCRETE'.
         Default: :code:`None`
         """
+        self.disc_dyn_custom_jac = None
+        r"""
+        CasADi expression for the Jacobian of discrete dynamics :math:`(\partial f_\text{disc}(x, u, p) / \partial u, \partial f_\text{disc}(x, u, p) / \partial x)`.
+        Used if :py:attr:`acados_template.acados_ocp_options.AcadosOcpOptions.integrator_type` == 'DISCRETE'.
+        Default: :code:`None`
+        """
 
         self.dyn_ext_fun_type = 'casadi'
         """type of external functions for dynamics module; 'casadi' or 'generic'; Default: 'casadi'"""
